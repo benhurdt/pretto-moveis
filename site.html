@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#1A1410">
+<meta name="description" content="Pretto Móveis — Marcenaria sob medida em Osório RS. Móveis planejados, comerciais, decorativos e técnicos com qualidade e precisão.">
+<title>Pretto Móveis — Marcenaria Sob Medida | Osório RS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --madeira:    #8B5E3C;
+  --madeira2:   #A0714F;
+  --madeira-claro: #C49A6C;
+  --creme:      #F5EFE6;
+  --creme2:     #EDE4D7;
+  --creme3:     #E0D5C5;
+  --escuro:     #1A1410;
+  --escuro2:    #2A2118;
+  --escuro3:    #3D2E22;
+  --texto:      #2A2118;
+  --texto2:     #6B5744;
+  --texto3:     #9E8472;
+  --wpp:        #25D366;
+  --branco:     #FDFAF6;
+  --r:          6px;
+  --rlg:        12px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{
+  background:var(--creme);
+  color:var(--texto);
+  font-family:'DM Sans',sans-serif;
+  font-size:15px;
+  line-height:1.6;
+  max-width:480px;
+  margin:0 auto;
+  overflow-x:hidden;
+}
+
+/* ── HEADER ── */
+header{
+  background:var(--escuro);
+  padding:14px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  position:sticky;
+  top:0;
+  z-index:100;
+  border-bottom:1px solid var(--escuro3);
+}
+.logo{
+  display:flex;
+  flex-direction:column;
+  gap:1px;
+}
+.logo-nome{
+  font-family:'Playfair Display',serif;
+  font-size:20px;
+  font-weight:900;
+  color:var(--branco);
+  letter-spacing:-.3px;
+  line-height:1;
+}
+.logo-nome span{color:var(--madeira-claro)}
+.logo-sub{
+  font-size:9px;
+  font-weight:500;
+  color:var(--texto3);
+  text-transform:uppercase;
+  letter-spacing:.12em;
+}
+.hdr-wpp{
+  background:var(--wpp);
+  color:#fff;
+  border:none;
+  border-radius:var(--r);
+  padding:8px 14px;
+  font-family:'DM Sans',sans-serif;
+  font-weight:600;
+  font-size:12px;
+  text-decoration:none;
+  display:flex;
+  align-items:center;
+  gap:5px;
+  transition:opacity .15s;
+  white-space:nowrap;
+}
+.hdr-wpp:hover{opacity:.9}
+.hdr-wpp svg{width:15px;height:15px;fill:#fff}
+
+/* ── HERO ── */
+.hero{
+  position:relative;
+  background:var(--escuro);
+  padding:0 0 0;
+  overflow:hidden;
+  min-height:420px;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+}
+.hero-img{
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(to bottom, rgba(26,20,16,.3) 0%, rgba(26,20,16,.85) 65%, var(--escuro) 100%),
+    url('https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=480&q=80') center/cover no-repeat;
+}
+.hero-content{
+  position:relative;
+  z-index:2;
+  padding:32px 20px 36px;
+}
+.hero-chip{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  background:rgba(196,154,108,.15);
+  border:1px solid rgba(196,154,108,.3);
+  color:var(--madeira-claro);
+  font-size:10px;
+  font-weight:600;
+  text-transform:uppercase;
+  letter-spacing:.1em;
+  padding:5px 11px;
+  border-radius:20px;
+  margin-bottom:16px;
+}
+.hero-chip::before{
+  content:'';
+  width:5px;height:5px;
+  background:var(--madeira-claro);
+  border-radius:50%;
+}
+.hero-title{
+  font-family:'Playfair Display',serif;
+  font-size:40px;
+  font-weight:900;
+  color:var(--branco);
+  line-height:1.05;
+  margin-bottom:14px;
+  letter-spacing:-.5px;
+}
+.hero-title em{
+  color:var(--madeira-claro);
+  font-style:italic;
+  display:block;
+}
+.hero-desc{
+  font-size:14px;
+  color:rgba(253,250,246,.6);
+  margin-bottom:28px;
+  line-height:1.65;
+  font-weight:300;
+}
+.hero-btns{display:flex;gap:10px;flex-wrap:wrap}
+.btn-madeira{
+  background:var(--madeira);
+  color:var(--branco);
+  border:none;
+  padding:13px 22px;
+  border-radius:var(--r);
+  font-family:'DM Sans',sans-serif;
+  font-weight:600;
+  font-size:14px;
+  cursor:pointer;
+  text-decoration:none;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  transition:background .15s,transform .1s;
+}
+.btn-madeira:active{transform:scale(.97)}
+.btn-madeira:hover{background:var(--madeira2)}
+.btn-ghost{
+  background:transparent;
+  color:var(--branco);
+  border:1.5px solid rgba(255,255,255,.2);
+  padding:13px 20px;
+  border-radius:var(--r);
+  font-family:'DM Sans',sans-serif;
+  font-weight:500;
+  font-size:14px;
+  cursor:pointer;
+  text-decoration:none;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  transition:border-color .15s;
+}
+.btn-ghost:hover{border-color:rgba(255,255,255,.5)}
+
+/* ── NÚMEROS ── */
+.numeros{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  background:var(--escuro2);
+  border-bottom:1px solid var(--escuro3);
+}
+.numero-item{
+  padding:18px 12px;
+  text-align:center;
+  border-right:1px solid var(--escuro3);
+}
+.numero-item:last-child{border-right:none}
+.numero-val{
+  font-family:'Playfair Display',serif;
+  font-size:26px;
+  font-weight:700;
+  color:var(--madeira-claro);
+  display:block;
+  line-height:1;
+  margin-bottom:4px;
+}
+.numero-label{
+  font-size:10px;
+  font-weight:500;
+  color:var(--texto3);
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  line-height:1.3;
+}
+
+/* ── SEÇÃO ── */
+section{
+  padding:36px 20px;
+  border-top:1px solid var(--creme3);
+}
+section.dark{
+  background:var(--escuro);
+  border-top:none;
+}
+.sec-eyebrow{
+  font-size:10px;
+  font-weight:600;
+  text-transform:uppercase;
+  letter-spacing:.12em;
+  color:var(--madeira);
+  margin-bottom:8px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.sec-eyebrow::before{
+  content:'';
+  width:20px;height:1.5px;
+  background:var(--madeira);
+  display:inline-block;
+}
+.sec-eyebrow.light{color:var(--madeira-claro)}
+.sec-eyebrow.light::before{background:var(--madeira-claro)}
+.sec-title{
+  font-family:'Playfair Display',serif;
+  font-size:30px;
+  font-weight:700;
+  line-height:1.1;
+  margin-bottom:6px;
+  letter-spacing:-.3px;
+}
+.sec-title.light{color:var(--branco)}
+.sec-sub{
+  font-size:14px;
+  color:var(--texto2);
+  margin-bottom:24px;
+  line-height:1.6;
+  font-weight:300;
+}
+.sec-sub.light{color:rgba(253,250,246,.55)}
+
+/* ── CATEGORIAS ── */
+.cats-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+.cat-card{
+  background:var(--branco);
+  border:1px solid var(--creme3);
+  border-radius:var(--rlg);
+  padding:18px 14px;
+  cursor:pointer;
+  transition:border-color .2s,transform .15s,box-shadow .2s;
+  text-decoration:none;
+}
+.cat-card:hover{
+  border-color:var(--madeira-claro);
+  transform:translateY(-2px);
+  box-shadow:0 4px 16px rgba(139,94,60,.1);
+}
+.cat-icon{font-size:26px;margin-bottom:10px;display:block}
+.cat-titulo{
+  font-family:'Playfair Display',serif;
+  font-size:15px;
+  font-weight:700;
+  color:var(--texto);
+  margin-bottom:6px;
+}
+.cat-itens{
+  list-style:none;
+  font-size:11px;
+  color:var(--texto2);
+  line-height:1.8;
+  font-weight:400;
+}
+.cat-itens li{
+  display:flex;
+  align-items:baseline;
+  gap:5px;
+}
+.cat-itens li::before{
+  content:'·';
+  color:var(--madeira);
+  font-size:14px;
+  line-height:1;
+  flex-shrink:0;
+}
+
+/* ── PROJETOS (GALERIA REFERÊNCIA) ── */
+.galeria{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+}
+.galeria-item{
+  border-radius:var(--r);
+  overflow:hidden;
+  aspect-ratio:1;
+  background:var(--creme2);
+  position:relative;
+}
+.galeria-item.tall{
+  grid-row:span 2;
+  aspect-ratio:auto;
+}
+.galeria-item img{
+  width:100%;height:100%;
+  object-fit:cover;
+  display:block;
+  transition:transform .4s ease;
+}
+.galeria-item:hover img{transform:scale(1.04)}
+.galeria-label{
+  position:absolute;
+  bottom:0;left:0;right:0;
+  background:linear-gradient(to top,rgba(26,20,16,.8),transparent);
+  padding:20px 10px 8px;
+  font-size:11px;
+  font-weight:500;
+  color:rgba(253,250,246,.9);
+  text-transform:uppercase;
+  letter-spacing:.06em;
+}
+
+/* ── DIFERENCIAIS ── */
+.difs-list{display:flex;flex-direction:column;gap:14px}
+.dif{
+  display:flex;
+  gap:14px;
+  align-items:flex-start;
+  background:var(--branco);
+  border:1px solid var(--creme3);
+  border-radius:var(--rlg);
+  padding:16px;
+}
+.dif-icon{
+  width:40px;height:40px;
+  border-radius:var(--r);
+  background:var(--madeira);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+  font-size:18px;
+}
+.dif-titulo{
+  font-weight:600;
+  font-size:14px;
+  color:var(--texto);
+  margin-bottom:3px;
+}
+.dif-desc{
+  font-size:12px;
+  color:var(--texto2);
+  line-height:1.5;
+  font-weight:300;
+}
+
+/* ── CTA BANNER ── */
+.cta-banner{
+  background:var(--madeira);
+  padding:28px 20px;
+  text-align:center;
+}
+.cta-banner-title{
+  font-family:'Playfair Display',serif;
+  font-size:26px;
+  font-weight:700;
+  color:var(--branco);
+  line-height:1.1;
+  margin-bottom:8px;
+}
+.cta-banner-sub{
+  font-size:13px;
+  color:rgba(253,250,246,.7);
+  margin-bottom:20px;
+  font-weight:300;
+}
+.btn-wpp-full{
+  background:var(--wpp);
+  color:#fff;
+  border:none;
+  padding:14px 24px;
+  border-radius:var(--r);
+  font-family:'DM Sans',sans-serif;
+  font-weight:700;
+  font-size:15px;
+  cursor:pointer;
+  text-decoration:none;
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  transition:opacity .15s,transform .1s;
+  width:100%;
+  justify-content:center;
+}
+.btn-wpp-full:active{transform:scale(.97)}
+.btn-wpp-full:hover{opacity:.9}
+.btn-wpp-full svg{width:20px;height:20px;fill:#fff}
+
+/* ── CONTATO ── */
+.contato-grid{display:flex;flex-direction:column;gap:10px;margin-bottom:20px}
+.contato-item{
+  display:flex;
+  gap:13px;
+  align-items:center;
+  background:rgba(253,250,246,.05);
+  border:1px solid var(--escuro3);
+  border-radius:var(--r);
+  padding:13px 15px;
+  text-decoration:none;
+  transition:border-color .2s;
+}
+.contato-item:hover{border-color:var(--madeira)}
+.contato-icon{
+  width:36px;height:36px;
+  border-radius:var(--r);
+  background:var(--escuro3);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+  font-size:16px;
+}
+.contato-label{
+  font-size:10px;
+  font-weight:500;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  color:var(--texto3);
+  margin-bottom:2px;
+}
+.contato-val{
+  font-size:14px;
+  color:var(--branco);
+  font-weight:500;
+}
+
+/* ── FOOTER ── */
+footer{
+  background:var(--escuro2);
+  padding:24px 20px;
+  text-align:center;
+  border-top:1px solid var(--escuro3);
+}
+.footer-logo{
+  font-family:'Playfair Display',serif;
+  font-size:22px;
+  font-weight:700;
+  color:var(--branco);
+  margin-bottom:4px;
+}
+.footer-logo span{color:var(--madeira-claro)}
+.footer-sub{
+  font-size:11px;
+  color:var(--texto3);
+  text-transform:uppercase;
+  letter-spacing:.09em;
+  margin-bottom:18px;
+  font-weight:500;
+}
+.footer-copy{
+  font-size:11px;
+  color:var(--escuro3);
+  padding-top:16px;
+  border-top:1px solid var(--escuro3);
+  margin-top:16px;
+}
+
+/* ── BOTÃO FLUTUANTE ── */
+.wpp-fab{
+  position:fixed;
+  bottom:20px;right:20px;
+  z-index:200;
+  background:var(--wpp);
+  color:#fff;
+  border:none;
+  border-radius:50%;
+  width:54px;height:54px;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;
+  text-decoration:none;
+  box-shadow:0 4px 20px rgba(37,211,102,.45);
+  animation:pulseF 2.2s ease-in-out infinite;
+  transition:transform .15s;
+}
+.wpp-fab:active{transform:scale(.93)}
+.wpp-fab svg{width:26px;height:26px;fill:#fff}
+@keyframes pulseF{
+  0%,100%{box-shadow:0 4px 20px rgba(37,211,102,.45)}
+  50%{box-shadow:0 4px 32px rgba(37,211,102,.8)}
+}
+
+/* ── ANIMAÇÕES ── */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(14px)}
+  to{opacity:1;transform:none}
+}
+.hero-content{animation:fadeUp .6s ease both}
+.numeros .numero-item:nth-child(1){animation:fadeUp .5s .1s ease both}
+.numeros .numero-item:nth-child(2){animation:fadeUp .5s .2s ease both}
+.numeros .numero-item:nth-child(3){animation:fadeUp .5s .3s ease both}
+</style>
+</head>
+<body>
+
+<!-- BOTÃO FLUTUANTE -->
+<a class="wpp-fab" href="https://wa.me/5551996066005?text=Ol%C3%A1%2C+vim+pelo+site+da+Pretto+M%C3%B3veis!" target="_blank" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- HEADER -->
+<header>
+  <div class="logo">
+    <div class="logo-nome">Pretto <span>Móveis</span></div>
+    <div class="logo-sub">Marcenaria Sob Medida · Osório RS</div>
+  </div>
+  <a class="hdr-wpp" href="https://wa.me/5551996066005?text=Ol%C3%A1%2C+quero+um+or%C3%A7amento!" target="_blank">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    Orçamento
+  </a>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-img"></div>
+  <div class="hero-content">
+    <div class="hero-chip">Marcenaria em Osório RS</div>
+    <h1 class="hero-title">
+      Móveis que contam
+      <em>sua história.</em>
+    </h1>
+    <p class="hero-desc">Projetos sob medida em MDF e madeira para residências, empresas e estabelecimentos comerciais. Do planejamento à instalação.</p>
+    <div class="hero-btns">
+      <a class="btn-madeira" href="https://wa.me/5551996066005?text=Ol%C3%A1%2C+quero+um+or%C3%A7amento+sem+compromisso!" target="_blank">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Pedir orçamento
+      </a>
+      <a class="btn-ghost" href="#servicos">Ver serviços</a>
+    </div>
+  </div>
+</div>
+
+<!-- NÚMEROS -->
+<div class="numeros">
+  <div class="numero-item">
+    <span class="numero-val">+200</span>
+    <span class="numero-label">Projetos entregues</span>
+  </div>
+  <div class="numero-item">
+    <span class="numero-val">10+</span>
+    <span class="numero-label">Anos de experiência</span>
+  </div>
+  <div class="numero-item">
+    <span class="numero-val">100%</span>
+    <span class="numero-label">Sob medida</span>
+  </div>
+</div>
+
+<!-- SERVIÇOS -->
+<section id="servicos">
+  <div class="sec-eyebrow">O que fazemos</div>
+  <h2 class="sec-title">Serviços completos<br>de marcenaria</h2>
+  <p class="sec-sub">Do projeto à instalação, atendemos residências, empresas e estabelecimentos comerciais em Osório e região.</p>
+  <div class="cats-grid">
+
+    <div class="cat-card">
+      <span class="cat-icon">🏢</span>
+      <div class="cat-titulo">Comercial</div>
+      <ul class="cat-itens">
+        <li>Móveis para lojas</li>
+        <li>Balcões de atendimento</li>
+        <li>Vitrines e expositores</li>
+        <li>Recepções</li>
+        <li>Móveis para clínicas</li>
+        <li>Quiosques</li>
+      </ul>
+    </div>
+
+    <div class="cat-card">
+      <span class="cat-icon">🔧</span>
+      <div class="cat-titulo">Técnico</div>
+      <ul class="cat-itens">
+        <li>Montagem e desmontagem</li>
+        <li>Reformas em móveis</li>
+        <li>Troca de corrediças</li>
+        <li>Troca de dobradiças</li>
+        <li>Recuperação de móveis</li>
+        <li>Reparos em MDF</li>
+      </ul>
+    </div>
+
+    <div class="cat-card">
+      <span class="cat-icon">🎨</span>
+      <div class="cat-titulo">Decorativo</div>
+      <ul class="cat-itens">
+        <li>Painéis ripados</li>
+        <li>Pergolados</li>
+        <li>Decks de madeira</li>
+        <li>Móveis rústicos</li>
+        <li>Móveis sob medida premium</li>
+        <li>Revestimentos em madeira</li>
+      </ul>
+    </div>
+
+    <div class="cat-card">
+      <span class="cat-icon">🏗️</span>
+      <div class="cat-titulo">Construção</div>
+      <ul class="cat-itens">
+        <li>Móveis para construtoras</li>
+        <li>Apartamentos decorados</li>
+        <li>Portas sob medida</li>
+        <li>Rodapés</li>
+        <li>Painéis decorativos</li>
+        <li>Acabamento interno</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- GALERIA -->
+<section style="padding-top:0;border-top:none">
+  <div class="sec-eyebrow">Referências</div>
+  <h2 class="sec-title">Nosso trabalho<br>em MDF</h2>
+  <p class="sec-sub">Qualidade e precisão em cada projeto. Acabamento impecável do início ao fim.</p>
+  <div class="galeria">
+    <div class="galeria-item tall">
+      <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&q=80" alt="Armário planejado MDF">
+      <div class="galeria-label">Armário planejado</div>
+    </div>
+    <div class="galeria-item">
+      <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=300&q=80" alt="Sala com móveis planejados">
+      <div class="galeria-label">Sala planejada</div>
+    </div>
+    <div class="galeria-item">
+      <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=300&q=80" alt="Cozinha planejada MDF">
+      <div class="galeria-label">Cozinha sob medida</div>
+    </div>
+    <div class="galeria-item tall">
+      <img src="https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=400&q=80" alt="Quarto planejado">
+      <div class="galeria-label">Quarto planejado</div>
+    </div>
+    <div class="galeria-item">
+      <img src="https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=300&q=80" alt="Escritório sob medida">
+      <div class="galeria-label">Escritório</div>
+    </div>
+  </div>
+</section>
+
+<!-- DIFERENCIAIS -->
+<section>
+  <div class="sec-eyebrow">Por que escolher</div>
+  <h2 class="sec-title">O diferencial<br>Pretto Móveis</h2>
+  <div class="difs-list">
+    <div class="dif">
+      <div class="dif-icon">📐</div>
+      <div>
+        <div class="dif-titulo">100% sob medida</div>
+        <div class="dif-desc">Cada projeto é único. Medimos, projetamos e executamos conforme o espaço e a necessidade do cliente.</div>
+      </div>
+    </div>
+    <div class="dif">
+      <div class="dif-icon">🎯</div>
+      <div>
+        <div class="dif-titulo">Do projeto à instalação</div>
+        <div class="dif-desc">Acompanhamos todo o processo — orçamento, fabricação e instalação com atendimento direto ao cliente.</div>
+      </div>
+    </div>
+    <div class="dif">
+      <div class="dif-icon">🏆</div>
+      <div>
+        <div class="dif-titulo">Qualidade e prazo</div>
+        <div class="dif-desc">Materiais selecionados, acabamento de alto nível e compromisso com a entrega no prazo combinado.</div>
+      </div>
+    </div>
+    <div class="dif">
+      <div class="dif-icon">📍</div>
+      <div>
+        <div class="dif-titulo">Atendimento local</div>
+        <div class="dif-desc">Baseados em Osório RS, atendemos toda a região litorânea com agilidade e preço justo.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<div class="cta-banner">
+  <div class="cta-banner-title">Pronto para transformar<br>seu espaço?</div>
+  <div class="cta-banner-sub">Orçamento gratuito e sem compromisso.<br>Atendemos Osório e região.</div>
+  <a class="btn-wpp-full" href="https://wa.me/5551996066005?text=Ol%C3%A1%2C+quero+um+or%C3%A7amento+sem+compromisso+para+um+projeto+de+m%C3%B3veis!" target="_blank">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    Solicitar orçamento grátis
+  </a>
+</div>
+
+<!-- CONTATO -->
+<section class="dark" id="contato">
+  <div class="sec-eyebrow light">Fale conosco</div>
+  <h2 class="sec-title light">Contato e<br>localização</h2>
+  <p class="sec-sub light">Atendimento pelo WhatsApp de segunda a sábado.</p>
+  <div class="contato-grid">
+    <a class="contato-item" href="https://wa.me/5551996066005" target="_blank">
+      <div class="contato-icon">📱</div>
+      <div>
+        <div class="contato-label">WhatsApp</div>
+        <div class="contato-val">(51) 9606-6005</div>
+      </div>
+    </a>
+    <div class="contato-item">
+      <div class="contato-icon">📍</div>
+      <div>
+        <div class="contato-label">Endereço</div>
+        <div class="contato-val">R. Orlando F. Silva, 819<br>Medianeira · Osório RS</div>
+      </div>
+    </div>
+    <div class="contato-item">
+      <div class="contato-icon">🕐</div>
+      <div>
+        <div class="contato-label">Atendimento</div>
+        <div class="contato-val">Seg–Sex: 8h às 18h<br>Sábado: 8h às 12h</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Pretto <span>Móveis</span></div>
+  <div class="footer-sub">Marcenaria Sob Medida · Osório RS</div>
+  <a class="btn-wpp-full" href="https://wa.me/5551996066005?text=Ol%C3%A1%2C+vim+pelo+site+da+Pretto+M%C3%B3veis!" target="_blank" style="max-width:260px;margin:0 auto">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    Falar no WhatsApp
+  </a>
+  <div class="footer-copy">© 2026 Pretto Móveis — Marcenaria Sob Medida · Osório RS</div>
+</footer>
+
+</body>
+</html>
