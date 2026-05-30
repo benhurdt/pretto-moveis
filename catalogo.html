@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#1C1208">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Pretto Móveis — Catálogo de Projetos</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cafe:#1C1208;--cafe2:#2E1E0A;--cafe3:#3D2810;
+  --ouro:#C8920A;--ouro2:#E0A820;--ouro3:#F5C842;
+  --creme:#F5EED8;--creme2:#EDE3C4;--creme3:#D9CFA8;
+  --text:#F5EED8;--text2:rgba(245,238,216,.65);--text3:rgba(245,238,216,.35);
+  --r:10px;--rlg:16px;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;-webkit-font-smoothing:antialiased}
+html,body{height:100%;background:var(--cafe);color:var(--text)}
+body{overflow:hidden}
+body{font-family:'Outfit',sans-serif;font-size:15px;user-select:none}
+
+/* ── SPLASH ── */
+.splash{
+  position:fixed;inset:0;background:var(--cafe);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  z-index:999;transition:opacity .6s ease, transform .6s ease;
+}
+.splash.hide{opacity:0;transform:scale(1.04);pointer-events:none}
+.splash-logo-wrap{
+  width:96px;height:96px;border-radius:20px;
+  background:linear-gradient(135deg,var(--cafe2),var(--cafe3));
+  border:1.5px solid rgba(200,146,10,.3);
+  display:flex;align-items:center;justify-content:center;
+  font-size:44px;margin-bottom:24px;
+  box-shadow:0 20px 60px rgba(0,0,0,.5);
+  animation:splashPop .6s cubic-bezier(.34,1.56,.64,1) .2s both;
+}
+@keyframes splashPop{from{opacity:0;transform:scale(.7)}to{opacity:1;transform:scale(1)}}
+.splash-nome{
+  font-family:'Playfair Display',serif;
+  font-size:28px;font-weight:600;letter-spacing:.02em;
+  animation:fadeUp .5s ease .5s both;
+}
+.splash-sub{
+  font-size:12px;color:var(--text3);letter-spacing:.18em;text-transform:uppercase;
+  margin-top:8px;
+  animation:fadeUp .5s ease .65s both;
+}
+.splash-line{
+  width:40px;height:2px;background:var(--ouro);border-radius:1px;
+  margin-top:16px;
+  animation:lineGrow .6s ease .8s both;
+}
+@keyframes lineGrow{from{width:0;opacity:0}to{width:40px;opacity:1}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── APP ── */
+.app{height:100vh;display:flex;flex-direction:column;opacity:0;transition:opacity .4s ease}
+.app.visible{opacity:1}
+
+/* ── HEADER ── */
+.hdr{
+  padding:16px 18px 12px;
+  background:var(--cafe);
+  border-bottom:1px solid rgba(200,146,10,.15);
+  display:flex;align-items:center;justify-content:space-between;
+  flex-shrink:0;
+}
+.hdr-left{display:flex;align-items:center;gap:12px}
+.hdr-logo{
+  width:40px;height:40px;border-radius:10px;
+  background:linear-gradient(135deg,var(--ouro),var(--ouro2));
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;flex-shrink:0;
+}
+.hdr-nome{font-family:'Playfair Display',serif;font-size:17px;font-weight:600}
+.hdr-sub{font-size:11px;color:var(--ouro2);letter-spacing:.06em;margin-top:1px}
+.hdr-wpp{
+  width:38px;height:38px;border-radius:50%;
+  background:rgba(37,211,102,.15);border:1px solid rgba(37,211,102,.3);
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;transition:all .2s;
+}
+.hdr-wpp:hover,.hdr-wpp:active{background:rgba(37,211,102,.25)}
+
+/* ── TELAS ── */
+.screen{
+  flex:1;overflow:hidden;position:relative;
+  min-height:0;
+}
+.view{
+  position:absolute;inset:0;
+  overflow-y:auto;overflow-x:hidden;
+  transition:opacity .25s ease, transform .25s ease;
+  -webkit-overflow-scrolling:touch;
+}
+.view::-webkit-scrollbar{display:none}
+.view.hidden{opacity:0;pointer-events:none;transform:translateX(20px)}
+.view.hidden.back{transform:translateX(-20px)}
+
+/* ── HOME ── */
+.home-hero{
+  background:linear-gradient(160deg,var(--cafe2) 0%,var(--cafe3) 60%,rgba(200,146,10,.08) 100%);
+  padding:28px 20px 24px;
+  position:relative;overflow:hidden;
+}
+.home-hero::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 80% 60% at 80% 20%,rgba(200,146,10,.1) 0%,transparent 60%);
+}
+.home-saudacao{font-size:13px;color:var(--ouro2);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px}
+.home-titulo{
+  font-family:'Playfair Display',serif;
+  font-size:28px;font-weight:600;line-height:1.2;margin-bottom:6px;
+}
+.home-titulo em{font-style:italic;color:var(--ouro2)}
+.home-desc{font-size:13px;color:var(--text2);line-height:1.6;max-width:280px}
+
+.cats-grid{
+  padding:18px 16px;
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+.cat-card{
+  background:var(--cafe2);
+  border:1px solid rgba(200,146,10,.12);
+  border-radius:var(--rlg);
+  padding:0;overflow:hidden;
+  cursor:pointer;
+  transition:all .2s ease;
+  position:relative;
+}
+.cat-card:active{transform:scale(.97);border-color:rgba(200,146,10,.35)}
+.cat-thumb{
+  aspect-ratio:4/3;
+  background:linear-gradient(145deg,var(--cafe3),var(--cafe2));
+  display:flex;align-items:center;justify-content:center;
+  font-size:36px;position:relative;overflow:hidden;
+}
+.cat-thumb-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(28,18,8,.7) 0%,transparent 50%);
+}
+.cat-count{
+  position:absolute;bottom:8px;right:8px;
+  background:rgba(200,146,10,.9);
+  font-size:10px;font-weight:600;
+  padding:2px 8px;border-radius:10px;color:#fff;
+  font-family:'Outfit',sans-serif;
+}
+.cat-info{padding:11px 13px}
+.cat-nome{font-size:14px;font-weight:600;margin-bottom:2px}
+.cat-desc{font-size:11px;color:var(--text3);line-height:1.4}
+
+/* LEAD CARD */
+.lead-card{
+  margin:0 16px 16px;
+  background:linear-gradient(135deg,rgba(200,146,10,.12),rgba(200,146,10,.06));
+  border:1px solid rgba(200,146,10,.25);
+  border-radius:var(--rlg);
+  padding:16px;
+  cursor:pointer;
+  transition:all .2s;
+}
+.lead-card:active{transform:scale(.98)}
+.lead-card-title{font-size:13px;font-weight:600;color:var(--ouro2);margin-bottom:4px;display:flex;align-items:center;gap:7px}
+.lead-card-sub{font-size:12px;color:var(--text2);line-height:1.5}
+
+/* ── GALERIA ── */
+.galeria-hdr{
+  padding:14px 16px;
+  display:flex;align-items:center;gap:10px;
+  background:var(--cafe);
+  border-bottom:1px solid rgba(200,146,10,.1);
+  flex-shrink:0;position:sticky;top:0;z-index:10;
+}
+.btn-back{
+  width:34px;height:34px;border-radius:50%;
+  background:rgba(245,238,216,.08);border:1px solid rgba(245,238,216,.12);
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;font-size:18px;color:var(--text2);
+  transition:all .15s;flex-shrink:0;
+}
+.btn-back:active{background:rgba(245,238,216,.15)}
+.galeria-titulo{font-family:'Playfair Display',serif;font-size:18px;font-weight:600}
+.galeria-sub{font-size:11px;color:var(--text3);margin-top:1px}
+
+.fotos-grid{
+  padding:12px;
+  display:grid;grid-template-columns:1fr 1fr;gap:3px;
+}
+.foto-item{
+  aspect-ratio:1;
+  background:var(--cafe2);
+  border-radius:var(--r);overflow:hidden;
+  cursor:pointer;position:relative;
+  transition:transform .2s;
+  display:block;
+}
+.foto-item img{
+  position:absolute;inset:0;
+  width:100%;height:100%;
+  object-fit:cover;
+  border-radius:var(--r);
+}
+.foto-item:active{transform:scale(.96)}
+.foto-inner{
+  width:100%;height:100%;
+  display:flex;align-items:center;justify-content:center;
+  flex-direction:column;gap:6px;
+  font-size:28px;color:rgba(245,238,216,.15);
+}
+.foto-label{font-size:10px;color:rgba(245,238,216,.2);letter-spacing:.06em;text-transform:uppercase}
+.foto-destaque{grid-column:span 2;aspect-ratio:16/9}
+
+/* ── LIGHTBOX ── */
+.lightbox{
+  position:fixed;inset:0;background:rgba(0,0,0,.95);z-index:500;
+  display:none;flex-direction:column;
+}
+.lightbox.open{display:flex}
+.lb-hdr{
+  padding:48px 18px 14px;
+  display:flex;align-items:center;justify-content:space-between;
+  flex-shrink:0;
+}
+.lb-close{
+  width:36px;height:36px;border-radius:50%;
+  background:rgba(255,255,255,.1);border:none;
+  color:#fff;font-size:18px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+}
+.lb-titulo{font-family:'Playfair Display',serif;font-size:16px;font-style:italic;color:rgba(255,255,255,.8)}
+.lb-img-wrap{
+  flex:1;display:flex;align-items:center;justify-content:center;
+  padding:10px 18px;overflow:hidden;
+}
+.lb-img-inner{
+  width:100%;max-height:100%;
+  background:var(--cafe2);border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:64px;aspect-ratio:4/3;
+}
+.lb-info{
+  padding:16px 20px 32px;flex-shrink:0;
+}
+.lb-nome{font-size:16px;font-weight:600;margin-bottom:6px}
+.lb-desc{font-size:13px;color:rgba(255,255,255,.55);line-height:1.6}
+.lb-nav{
+  display:flex;gap:10px;margin-top:14px;
+}
+.lb-nav-btn{
+  flex:1;padding:11px;border-radius:var(--r);
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);
+  color:rgba(255,255,255,.7);font-size:13px;font-family:'Outfit',sans-serif;
+  cursor:pointer;transition:all .15s;
+}
+.lb-nav-btn:active{background:rgba(255,255,255,.14)}
+.lb-orcamento{
+  width:100%;padding:13px;border-radius:var(--r);
+  background:#25D366;border:none;color:#fff;
+  font-family:'Outfit',sans-serif;font-weight:600;font-size:14px;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;
+  margin-top:6px;transition:opacity .15s;
+}
+.lb-orcamento:active{opacity:.85}
+
+/* ── MODAL LEAD ── */
+.modal-overlay{
+  position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:600;
+  display:none;align-items:flex-end;justify-content:center;
+}
+.modal-overlay.open{display:flex}
+.modal-box{
+  background:var(--cafe2);border-radius:20px 20px 0 0;
+  width:100%;max-width:480px;
+  padding:20px 20px 36px;
+  animation:slideUp .25s ease;
+  border-top:1px solid rgba(200,146,10,.2);
+}
+@keyframes slideUp{from{transform:translateY(30px);opacity:0}to{transform:none;opacity:1}}
+.modal-handle{display:block;width:36px;height:4px;background:rgba(245,238,216,.15);border-radius:2px;margin:0 auto 18px}
+.modal-titulo{font-family:'Playfair Display',serif;font-size:19px;font-weight:600;margin-bottom:4px}
+.modal-sub{font-size:12px;color:var(--text2);margin-bottom:18px;line-height:1.5}
+.field{margin-bottom:12px}
+.field label{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--text3);display:block;margin-bottom:5px}
+.field input,.field select{
+  width:100%;background:rgba(245,238,216,.06);
+  border:1px solid rgba(245,238,216,.12);border-radius:var(--r);
+  padding:10px 13px;color:var(--text);font-family:'Outfit',sans-serif;font-size:14px;outline:none;
+  transition:border-color .2s;
+}
+.field input:focus,.field select:focus{border-color:rgba(200,146,10,.5)}
+.field input::placeholder{color:var(--text3)}
+.field select option{background:var(--cafe2)}
+.btn-salvar-lead{
+  width:100%;padding:13px;border-radius:var(--r);
+  background:var(--ouro);border:none;color:#fff;
+  font-family:'Outfit',sans-serif;font-weight:700;font-size:14px;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;
+  transition:opacity .15s;margin-top:6px;
+}
+.btn-salvar-lead:active{opacity:.85}
+.btn-cancelar{
+  width:100%;padding:11px;border-radius:var(--r);
+  background:transparent;border:none;color:var(--text3);
+  font-family:'Outfit',sans-serif;font-size:13px;cursor:pointer;margin-top:6px;
+}
+
+/* ── LEADS SALVOS ── */
+.leads-hdr{
+  padding:14px 16px;
+  display:flex;align-items:center;gap:10px;
+  background:var(--cafe);
+  border-bottom:1px solid rgba(200,146,10,.1);
+  position:sticky;top:0;z-index:10;
+}
+.leads-count{
+  margin-left:auto;
+  background:rgba(200,146,10,.15);border:1px solid rgba(200,146,10,.25);
+  color:var(--ouro2);font-size:11px;font-weight:600;
+  padding:3px 10px;border-radius:12px;
+}
+.lead-item{
+  display:flex;align-items:center;gap:12px;
+  padding:13px 16px;border-bottom:1px solid rgba(245,238,216,.05);
+}
+.lead-av{
+  width:42px;height:42px;border-radius:50%;
+  background:linear-gradient(135deg,var(--cafe3),var(--cafe2));
+  border:1px solid rgba(200,146,10,.2);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Playfair Display',serif;font-size:18px;color:var(--ouro2);
+  flex-shrink:0;
+}
+.lead-info{flex:1;min-width:0}
+.lead-nome{font-size:14px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lead-detalhe{font-size:12px;color:var(--text3);margin-top:2px}
+.lead-wpp{
+  width:36px;height:36px;border-radius:50%;
+  background:rgba(37,211,102,.1);border:1px solid rgba(37,211,102,.2);
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;transition:all .15s;flex-shrink:0;
+}
+.lead-wpp:active{background:rgba(37,211,102,.2)}
+.lead-del{
+  width:30px;height:30px;border-radius:50%;
+  background:rgba(248,113,113,.08);border:1px solid rgba(248,113,113,.15);
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;font-size:13px;
+}
+
+/* ── NAV BOTTOM ── */
+.nav-bottom{
+  flex-shrink:0;
+  background:var(--cafe);
+  border-top:1px solid rgba(200,146,10,.12);
+  display:flex;
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+.nav-btn{
+  flex:1;padding:12px 8px 10px;
+  display:flex;flex-direction:column;align-items:center;gap:4px;
+  cursor:pointer;transition:all .15s;
+  background:none;border:none;color:var(--text3);font-family:'Outfit',sans-serif;
+}
+.nav-btn.ativo{color:var(--ouro2)}
+.nav-btn:active{opacity:.7}
+.nav-icon{font-size:20px;line-height:1}
+.nav-label{font-size:9px;font-weight:500;letter-spacing:.06em;text-transform:uppercase}
+
+/* ── GERENCIAR FOTOS ── */
+.btn-gerir{
+  display:flex;align-items:center;gap:6px;
+  background:rgba(200,146,10,.1);border:1px solid rgba(200,146,10,.2);
+  color:var(--ouro2);font-size:11px;font-weight:600;
+  padding:5px 12px;border-radius:12px;cursor:pointer;
+  font-family:'Outfit',sans-serif;margin-left:auto;
+}
+.foto-real{width:100%;height:100%;object-fit:cover;border-radius:var(--r);display:block}
+.lb-img-real{width:100%;max-height:100%;object-fit:contain;border-radius:12px;display:block;margin:0 auto}
+.add-foto-btn{
+  aspect-ratio:1;
+  background:rgba(200,146,10,.06);
+  border:2px dashed rgba(200,146,10,.25);
+  border-radius:var(--r);
+  display:flex;align-items:center;justify-content:center;
+  flex-direction:column;gap:6px;cursor:pointer;
+  color:var(--ouro2);font-size:11px;
+  transition:all .2s;
+}
+.add-foto-btn:active{background:rgba(200,146,10,.12)}
+.add-foto-icon{font-size:26px}
+.foto-del-btn{
+  position:absolute;top:6px;right:6px;
+  background:rgba(220,38,38,.85);border:none;color:#fff;
+  width:26px;height:26px;border-radius:50%;
+  font-size:15px;font-weight:700;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  z-index:10;box-shadow:0 2px 6px rgba(0,0,0,.4);
+}
+input[type=file]{display:none}
+
+/* ── TOAST ── */
+.toast{
+  position:fixed;bottom:80px;left:50%;transform:translateX(-50%);
+  background:var(--creme);color:var(--cafe);
+  font-size:13px;font-weight:600;
+  padding:9px 20px;border-radius:20px;z-index:900;
+  opacity:0;transition:opacity .3s;pointer-events:none;white-space:nowrap;
+  box-shadow:0 4px 20px rgba(0,0,0,.3);
+}
+.toast.show{opacity:1}
+</style>
+</head>
+<body>
+
+<!-- SPLASH -->
+<div class="splash" id="splash">
+  <div class="splash-logo-wrap">🪵</div>
+  <div class="splash-nome">Pretto Móveis</div>
+  <div class="splash-sub">Móveis sob medida · Osório RS</div>
+  <div class="splash-line"></div>
+</div>
+
+<!-- APP -->
+<div class="app" id="app">
+
+  <!-- HEADER -->
+  <div class="hdr">
+    <div class="hdr-left">
+      <div class="hdr-logo">🪵</div>
+      <div>
+        <div class="hdr-nome">Pretto Móveis</div>
+        <div class="hdr-sub">Catálogo de Projetos</div>
+      </div>
+    </div>
+    <div class="hdr-wpp" onclick="abrirWppEmpresa()">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    </div>
+  </div>
+
+  <!-- TELA -->
+  <div class="screen">
+
+    <!-- HOME -->
+    <div class="view" id="view-home">
+      <div class="home-hero">
+        <div class="home-saudacao">✦ Bem-vindo ao nosso portfólio</div>
+        <div class="home-titulo">Projetos que<br><em>transformam</em> espaços</div>
+        <div class="home-desc">Cada móvel é desenvolvido sob medida, com qualidade e atenção aos detalhes.</div>
+      </div>
+      <div class="cats-grid" id="cats-grid"></div>
+      <div class="lead-card" onclick="abrirModalLead()">
+        <div class="lead-card-title">
+          <span>📋</span> Registrar interesse do cliente
+        </div>
+        <div class="lead-card-sub">Anote o nome e contato do cliente interessado. O registro fica salvo e você recebe um lembrete no WhatsApp.</div>
+      </div>
+    </div>
+
+    <!-- GALERIA -->
+    <div class="view hidden" id="view-galeria">
+      <div class="galeria-hdr">
+        <div class="btn-back" onclick="voltarHome()">‹</div>
+        <div>
+          <div class="galeria-titulo" id="galeria-titulo">Cozinhas</div>
+          <div class="galeria-sub" id="galeria-sub">projetos</div>
+        </div>
+        <button class="btn-gerir" onclick="toggleModoEdicao()">
+          <span id="btn-gerir-txt">✏️ Editar</span>
+        </button>
+      </div>
+      <input type="file" id="foto-input" accept="image/*" multiple onchange="processarFotos(event)">
+      <div class="fotos-grid" id="fotos-grid"></div>
+    </div>
+
+    <!-- LEADS -->
+    <div class="view hidden" id="view-leads">
+      <div class="leads-hdr">
+        <div class="btn-back" onclick="voltarHome()">‹</div>
+        <div style="flex:1">
+          <div class="galeria-titulo">Contatos</div>
+          <div class="galeria-sub">clientes interessados</div>
+        </div>
+        <div class="leads-count" id="leads-count">0</div>
+        <button onclick="abrirModalLead()" style="margin-left:8px;background:var(--ouro);border:none;color:#fff;font-size:12px;font-weight:600;padding:6px 12px;border-radius:var(--r);cursor:pointer;font-family:'Outfit',sans-serif">+ Novo</button>
+      </div>
+      <div id="leads-lista"></div>
+    </div>
+
+  </div>
+
+  <!-- NAV BOTTOM -->
+  <div class="nav-bottom">
+    <button class="nav-btn ativo" id="nb-home" onclick="setNav('home')">
+      <span class="nav-icon">🏠</span>
+      <span class="nav-label">Início</span>
+    </button>
+    <button class="nav-btn" id="nb-contatos" onclick="setNav('contatos')">
+      <span class="nav-icon">👥</span>
+      <span class="nav-label">Contatos</span>
+    </button>
+    <button class="nav-btn" id="nb-orcamento" onclick="abrirWppEmpresa()">
+      <span class="nav-icon">📤</span>
+      <span class="nav-label">Enviar link</span>
+    </button>
+  </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <div class="lb-hdr">
+    <button class="lb-close" onclick="fecharLightbox()">×</button>
+    <div class="lb-titulo" id="lb-cat"></div>
+  </div>
+  <div class="lb-img-wrap">
+    <div class="lb-img-inner" id="lb-img">📷</div>
+  </div>
+  <div class="lb-info">
+    <div class="lb-nome" id="lb-nome"></div>
+    <div class="lb-desc" id="lb-desc"></div>
+    <div class="lb-nav">
+      <button class="lb-nav-btn" onclick="navLightbox(-1)">‹ Anterior</button>
+      <button class="lb-nav-btn" onclick="navLightbox(1)">Próximo ›</button>
+    </div>
+    <button class="lb-orcamento" onclick="orcamentoProjeto()">
+      📋 Registrar interesse do cliente
+    </button>
+  </div>
+</div>
+
+<!-- MODAL LEAD -->
+<div class="modal-overlay" id="modal-lead">
+  <div class="modal-box">
+    <span class="modal-handle"></span>
+    <div class="modal-titulo">Solicitar orçamento</div>
+    <div class="modal-sub">Deixe seus dados e entraremos em contato com uma proposta personalizada.</div>
+    <div class="field"><label>Nome completo</label><input id="lead-nome" type="text" placeholder="Seu nome"></div>
+    <div class="field"><label>WhatsApp</label><input id="lead-tel" type="tel" placeholder="(51) 99999-9999"></div>
+    <div class="field"><label>O que você precisa?</label>
+      <select id="lead-proj">
+        <option value="">Selecione o projeto...</option>
+        <option>Cozinha planejada</option>
+        <option>Quarto sob medida</option>
+        <option>Closet</option>
+        <option>Painel de TV</option>
+        <option>Home Office</option>
+        <option>Área Gourmet</option>
+        <option>Outro</option>
+      </select>
+    </div>
+    <button class="btn-salvar-lead" onclick="salvarLead()">✓ Salvar e enviar pelo WhatsApp</button>
+    <button class="btn-cancelar" onclick="fecharModalLead()">Cancelar</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ── DADOS ────────────────────────────────────────────
+const EMPRESA = {
+  nome: 'Pretto Móveis',
+  wpp: '5551996066005',
+  cidade: 'Osório RS',
+};
+
+const CATEGORIAS = [
+  { id:'cozinhas', icon:'🍳', nome:'Cozinhas', desc:'Planejadas sob medida', projetos:[
+    {nome:'Cozinha Americana', desc:'MDF 18mm, tampo quartzo, ilha central. Projeto moderno e funcional.', emoji:'🍳'},
+    {nome:'Cozinha Colonial', desc:'Pintura laca branca, puxadores dourados, porta de vidro. Estilo clássico atemporal.', emoji:'🪵'},
+    {nome:'Cozinha Integrada', desc:'Conceito aberto integrado à sala. MDF Grafite + Branco, 4,2m linear.', emoji:'✨'},
+    {nome:'Cozinha Compacta', desc:'Solução inteligente para apartamentos. Aproveitamento máximo de espaço.', emoji:'💡'},
+  ]},
+  { id:'quartos', icon:'🛏️', nome:'Quartos', desc:'Dormitórios personalizados', projetos:[
+    {nome:'Suíte Master', desc:'Guarda-roupa 3m, painel de cabeceira, criados integrados. MDF Cimento + Carvalho.', emoji:'🛏️'},
+    {nome:'Quarto Solteiro', desc:'Cama com baú embutido, escrivaninha integrada, nichos decorativos.', emoji:'📚'},
+    {nome:'Quarto Infantil', desc:'Beliche com escorregador, baú de brinquedos, painel temático personalizado.', emoji:'🎠'},
+    {nome:'Quarto Casal', desc:'Painel cama com iluminação LED indireta. MDF Freijó Natural + Off White.', emoji:'💫'},
+  ]},
+  { id:'closets', icon:'👔', nome:'Closets', desc:'Organização e elegância', projetos:[
+    {nome:'Walk-in Closet', desc:'Closet completo com ilha central, espelhos de corpo inteiro, iluminação LED.', emoji:'👔'},
+    {nome:'Closet Embutido', desc:'Aproveitamento total de nicho. Divisórias internas personalizadas para cada necessidade.', emoji:'🪞'},
+    {nome:'Closet Feminino', desc:'Espaço para bolsas, sapatos, acessórios. Gaveteiros com organizadores internos.', emoji:'💎'},
+  ]},
+  { id:'paineis', icon:'📺', nome:'Painéis', desc:'Design e entretenimento', projetos:[
+    {nome:'Painel Ripado', desc:'Ripas de MDF na cor Carvalho Natural. Iluminação LED embutida. 3,2m × 2,2m.', emoji:'📺'},
+    {nome:'Painel com Lareira', desc:'Painel com embutido para lareira elétrica. Revestimento em couro ecológico.', emoji:'🔥'},
+    {nome:'Home Theater', desc:'Rack suspenso, nichos para eletrônicos, painel central ripado Grafite.', emoji:'🎬'},
+  ]},
+  { id:'gourmet', icon:'🍷', nome:'Área Gourmet', desc:'Lazer e confraternização', projetos:[
+    {nome:'Bar Gourmet', desc:'Adega embutida, bancada em granito, prateleiras para taças com LED.', emoji:'🍷'},
+    {nome:'Churrasqueira Integrada', desc:'Móveis de área externa em MDF naval. Bancada em porcelanato, cuba inox.', emoji:'🔥'},
+  ]},
+  { id:'escritorios', icon:'💼', nome:'Home Office', desc:'Produtividade em casa', projetos:[
+    {nome:'Escritório Executivo', desc:'Mesa em L, estante de livros integrada, painel com nichos e portas.', emoji:'💼'},
+    {nome:'Home Office Compacto', desc:'Solução para pequenos espaços. Mesa dobrável, prateleiras verticais.', emoji:'💻'},
+    {nome:'Escritório Duplo', desc:'Espaço compartilhado para dois profissionais. Mesas espelhadas, organização modular.', emoji:'🤝'},
+  ]},
+];
+
+const KEY_LEADS = 'pretto_leads';
+let catAtiva = null;
+let lbIdx = 0;
+let lbProjetos = [];
+let lbCatNome = '';
+
+// ── LEADS ────────────────────────────────────────────
+function getLeads(){ try{ return JSON.parse(localStorage.getItem(KEY_LEADS)||'[]'); }catch(e){ return []; } }
+function salvarLeads(l){ try{ localStorage.setItem(KEY_LEADS, JSON.stringify(l)); }catch(e){} }
+
+function salvarLead(){
+  const nome = document.getElementById('lead-nome').value.trim();
+  const tel  = document.getElementById('lead-tel').value.trim();
+  const proj = document.getElementById('lead-proj').value;
+  if(!nome){ toast('Informe o nome do cliente.'); return; }
+  const leads = getLeads();
+  const agora = new Date();
+  leads.unshift({
+    id: Date.now().toString(36), nome, tel, proj,
+    data: agora.toLocaleDateString('pt-BR'),
+    hora: agora.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'})
+  });
+  salvarLeads(leads);
+  fecharModalLead();
+  // Lembrete para o próprio Gilmar
+  var nl = '\n';
+  var msg = '📋 *Lembrete — Cliente interessado*' + nl + nl
+    + '👤 *Nome:* ' + nome + nl
+    + (tel ? '📱 *WhatsApp:* ' + tel + nl : '')
+    + (proj ? '🛋 *Projeto:* ' + proj + nl : '')
+    + '📅 ' + agora.toLocaleDateString('pt-BR') + ' às ' + agora.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'}) + nl + nl
+    + '⚠️ Entrar em contato para enviar orçamento.';
+  window.open('https://wa.me/5551996066005?text=' + encodeURIComponent(msg), '_blank');
+  toast('✓ Cliente registrado!');
+  renderLeads();
+}
+
+function excluirLead(id){
+  salvarLeads(getLeads().filter(l=>l.id!==id));
+  renderLeads();
+  toast('Contato removido');
+}
+
+function renderLeads(){
+  const leads = getLeads();
+  const el = document.getElementById('leads-lista');
+  document.getElementById('leads-count').textContent = leads.length;
+  if(!leads.length){
+    el.innerHTML='<div style="text-align:center;padding:48px 20px;color:var(--text3);font-size:14px"><div style="font-size:36px;margin-bottom:12px">👥</div>Nenhum contato registrado ainda.</div>';
+    return;
+  }
+  el.innerHTML = leads.map(l=>`
+    <div class="lead-item">
+      <div class="lead-av">${l.nome.charAt(0).toUpperCase()}</div>
+      <div class="lead-info">
+        <div class="lead-nome">${l.nome}</div>
+        <div class="lead-detalhe">${l.proj||'Sem projeto definido'} · ${l.data}</div>
+      </div>
+      ${l.tel?`<div class="lead-wpp" onclick="wppLead('${l.tel.replace(/\D/g,'')}','${l.nome}')">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      </div>`:''}
+      <div class="lead-del" onclick="excluirLead('${l.id}')">🗑</div>
+    </div>`).join('');
+}
+
+function wppLead(tel, nome){
+  const num = tel.startsWith('55')?tel:'55'+tel;
+  window.open('https://wa.me/'+num+'?text='+encodeURIComponent('Olá, '+nome+'! Aqui é o Gilmar da Pretto Móveis. Estamos entrando em contato sobre seu interesse em nossos projetos. 😊'),'_blank');
+}
+
+// ── RENDER HOME ───────────────────────────────────────
+function renderHome(){
+  const grid = document.getElementById('cats-grid');
+  grid.innerHTML = CATEGORIAS.map(cat=>`
+    <div class="cat-card" onclick="abrirCategoria('${cat.id}')">
+      <div class="cat-thumb">
+        <span style="font-size:32px;z-index:1">${cat.icon}</span>
+        <div class="cat-thumb-overlay"></div>
+        <div class="cat-count">${cat.projetos.length}</div>
+      </div>
+      <div class="cat-info">
+        <div class="cat-nome">${cat.nome}</div>
+        <div class="cat-desc">${cat.desc}</div>
+      </div>
+    </div>`).join('');
+}
+
+// ── FOTOS REAIS ──────────────────────────────────────
+const FOTOS_KEY = 'pretto_fotos';
+let modoEdicao = false;
+
+function getFotos(catId){
+  try{ return JSON.parse(localStorage.getItem(FOTOS_KEY)||'{}')[catId]||[]; }catch(e){ return []; }
+}
+function salvarFoto(catId, base64){
+  try{
+    const todas = JSON.parse(localStorage.getItem(FOTOS_KEY)||'{}');
+    if(!todas[catId]) todas[catId]=[];
+    todas[catId].push({id:Date.now().toString(36), base64});
+    localStorage.setItem(FOTOS_KEY, JSON.stringify(todas));
+  }catch(e){ toast('Sem espaço para salvar a foto.'); }
+}
+function excluirFoto(catId, fotoId){
+  try{
+    const todas = JSON.parse(localStorage.getItem(FOTOS_KEY)||'{}');
+    if(todas[catId]) todas[catId] = todas[catId].filter(f=>f.id!==fotoId);
+    localStorage.setItem(FOTOS_KEY, JSON.stringify(todas));
+  }catch(e){}
+}
+
+function toggleModoEdicao(){
+  modoEdicao = !modoEdicao;
+  document.getElementById('btn-gerir-txt').textContent = modoEdicao ? '✓ Concluir' : '✏️ Editar';
+  if(catAtiva) renderGaleria(catAtiva);
+}
+
+function processarFotos(event){
+  if(!catAtiva) return;
+  const files = Array.from(event.target.files);
+  let proc = 0;
+  files.forEach(file=>{
+    const reader = new FileReader();
+    reader.onload = e=>{
+      const img = new Image();
+      img.onload = ()=>{
+        const canvas = document.createElement('canvas');
+        const max = 1000;
+        let w=img.width, h=img.height;
+        if(w>max){h=Math.round(h*max/w);w=max;}
+        if(h>max){w=Math.round(w*max/h);h=max;}
+        canvas.width=w; canvas.height=h;
+        canvas.getContext('2d').drawImage(img,0,0,w,h);
+        salvarFoto(catAtiva.id, canvas.toDataURL('image/jpeg',0.8));
+        proc++;
+        if(proc===files.length){ renderGaleria(catAtiva); toast('✓ '+files.length+' foto(s) adicionada(s)'); }
+      };
+      img.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  });
+  event.target.value='';
+}
+
+function renderGaleria(cat){
+  const fotos = getFotos(cat.id);
+  const grid = document.getElementById('fotos-grid');
+  let html = '';
+
+  // Fotos reais primeiro
+  fotos.forEach(function(f,i){
+    var destaque = (i===0&&!modoEdicao)?' foto-destaque':'';
+    var cidStr = cat.id;
+    var fidStr = f.id;
+    var clickAttr = modoEdicao ? '' : 'onclick="abrirLightboxFoto(\'' + cidStr + '\',' + i + ')"';
+    var delBtn = modoEdicao
+      ? '<button class="foto-del-btn" onclick="event.stopPropagation();confirmarExcluirFoto(\'' + cidStr + '\',\'' + fidStr + '\')">×</button>'
+      : '';
+    html += '<div class="foto-item' + destaque + '" ' + clickAttr + '>'
+      + '<img class="foto-real" src="' + f.base64 + '" alt="Foto ' + (i+1) + '">'
+      + delBtn + '</div>';
+  });
+
+  // Projetos padrão (emojis) se não tiver foto — ou em modo edição
+  if(!fotos.length || modoEdicao){
+    cat.projetos.forEach((p,i)=>{
+      if(!modoEdicao){
+        html += `<div class="foto-item${i===0&&!fotos.length?' foto-destaque':''}" onclick="abrirLightbox(${i})">
+          <div class="foto-inner"><span>${p.emoji}</span><span class="foto-label">${p.nome}</span></div>
+        </div>`;
+      }
+    });
+  }
+
+  // Botão adicionar foto (modo edição)
+  if(modoEdicao){
+    html += `<div class="add-foto-btn" onclick="document.getElementById('foto-input').click()">
+      <span class="add-foto-icon">📷</span>
+      <span>Adicionar foto</span>
+    </div>`;
+  }
+
+  grid.innerHTML = html;
+  document.getElementById('galeria-sub').textContent =
+    fotos.length ? fotos.length+' foto(s) real(is)' : cat.projetos.length+' projetos';
+}
+
+function confirmarExcluirFoto(catId, fotoId){
+  excluirFoto(catId, fotoId);
+  if(catAtiva) renderGaleria(catAtiva);
+  toast('Foto removida');
+}
+
+function abrirLightboxFoto(catId, idx){
+  const fotos = getFotos(catId);
+  if(!fotos[idx]) return;
+  lbProjetos = fotos;
+  lbCatNome = catAtiva.nome;
+  lbIdx = idx;
+  lbModoFoto = true;
+  const lb = document.getElementById('lightbox');
+  const imgEl = document.getElementById('lb-img');
+  const nomeEl = document.getElementById('lb-nome');
+  const descEl = document.getElementById('lb-desc');
+  imgEl.innerHTML = `<img class="lb-img-real" src="${fotos[idx].base64}" alt="Projeto">`;
+  nomeEl.textContent = catAtiva.nome+' — Foto '+(idx+1)+' de '+fotos.length;
+  descEl.textContent = catAtiva.desc;
+  document.getElementById('lb-cat').textContent = catAtiva.nome;
+  lb.classList.add('open');
+}
+
+let lbModoFoto = false;
+
+// ── NAVEGAÇÃO ─────────────────────────────────────────
+function setView(id, back=false){
+  document.querySelectorAll('.view').forEach(v=>{
+    if(v.id===id){ v.classList.remove('hidden','back'); }
+    else{ v.classList.add('hidden'); if(back) v.classList.add('back'); }
+  });
+}
+
+function abrirCategoria(id){
+  catAtiva = CATEGORIAS.find(c=>c.id===id);
+  if(!catAtiva) return;
+  modoEdicao = false;
+  document.getElementById('btn-gerir-txt').textContent = '✏️ Editar';
+  document.getElementById('galeria-titulo').textContent = catAtiva.nome;
+  renderGaleria(catAtiva);
+  setView('view-galeria');
+}
+
+function voltarHome(){
+  setView('view-home', true);
+  catAtiva=null; modoEdicao=false; lbModoFoto=false;
+  document.getElementById('nb-home').classList.add('ativo');
+  document.getElementById('nb-contatos').classList.remove('ativo');
+}
+
+function setNav(tela){
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('ativo'));
+  if(tela==='home'){
+    document.getElementById('nb-home').classList.add('ativo');
+    setView('view-home');
+  } else if(tela==='contatos'){
+    document.getElementById('nb-contatos').classList.add('ativo');
+    renderLeads();
+    setView('view-leads');
+  }
+}
+
+// ── LIGHTBOX ──────────────────────────────────────────
+function abrirLightbox(idx){
+  if(!catAtiva) return;
+  lbProjetos = catAtiva.projetos;
+  lbCatNome = catAtiva.nome;
+  lbIdx = idx;
+  renderLightbox();
+  document.getElementById('lightbox').classList.add('open');
+}
+
+function renderLightbox(){
+  const p = lbProjetos[lbIdx];
+  document.getElementById('lb-cat').textContent = lbCatNome;
+  document.getElementById('lb-img').textContent = p.emoji;
+  document.getElementById('lb-nome').textContent = p.nome;
+  document.getElementById('lb-desc').textContent = p.desc;
+}
+
+function navLightbox(dir){
+  lbIdx = (lbIdx+dir+lbProjetos.length)%lbProjetos.length;
+  if(lbModoFoto){
+    const imgEl = document.getElementById('lb-img');
+    const nomeEl = document.getElementById('lb-nome');
+    imgEl.innerHTML = '<img class="lb-img-real" src="'+lbProjetos[lbIdx].base64+'" alt="Projeto">';
+    nomeEl.textContent = catAtiva.nome+' — Foto '+(lbIdx+1)+' de '+lbProjetos.length;
+  } else {
+    lbModoFoto = false;
+    renderLightbox();
+  }
+}
+
+function fecharLightbox(){ document.getElementById('lightbox').classList.remove('open'); }
+
+function orcamentoProjeto(){
+  const p = lbProjetos[lbIdx];
+  fecharLightbox();
+  // Abre modal com projeto pré-selecionado
+  document.getElementById('lead-nome').value='';
+  document.getElementById('lead-tel').value='';
+  // Preenche projeto no select ou cria opção customizada
+  const sel = document.getElementById('lead-proj');
+  let found = false;
+  for(let i=0;i<sel.options.length;i++){
+    if(sel.options[i].text.toLowerCase().includes(p.nome.toLowerCase().split(' ')[0].toLowerCase())){
+      sel.selectedIndex=i; found=true; break;
+    }
+  }
+  if(!found){
+    // Adiciona opção temporária com o nome exato do projeto
+    const opt = document.createElement('option');
+    opt.value = p.nome; opt.text = p.nome; opt.dataset.temp='1';
+    sel.appendChild(opt); sel.value = p.nome;
+  }
+  document.getElementById('modal-lead').classList.add('open');
+  setTimeout(()=>document.getElementById('lead-nome').focus(),200);
+}
+
+// ── MODAL LEAD ────────────────────────────────────────
+function abrirModalLead(){
+  document.getElementById('lead-nome').value='';
+  document.getElementById('lead-tel').value='';
+  document.getElementById('lead-proj').value='';
+  document.getElementById('modal-lead').classList.add('open');
+  setTimeout(()=>document.getElementById('lead-nome').focus(),200);
+}
+function fecharModalLead(){ document.getElementById('modal-lead').classList.remove('open'); }
+document.getElementById('modal-lead').addEventListener('click',e=>{ if(e.target===document.getElementById('modal-lead')) fecharModalLead(); });
+
+// ── WHATSAPP EMPRESA ──────────────────────────────────
+function abrirWppEmpresa(){
+  // Abre WhatsApp sem número — Gilmar escolhe para quem enviar
+  const msg = 'Olá! Aqui é o Gilmar da *Pretto Móveis*. '
+    + 'Temos projetos de móveis sob medida que podem te interessar. '
+    + 'Posso te mostrar nosso catálogo? 😊\n\n'
+    + '📱 Acesse: https://benhurdt.github.io/pretto-moveis/catalogo.html';
+  window.open('https://wa.me/?text='+encodeURIComponent(msg),'_blank');
+}
+
+// ── TOAST ─────────────────────────────────────────────
+function toast(msg,dur=2200){
+  const el=document.getElementById('toast');
+  el.textContent=msg;el.classList.add('show');
+  setTimeout(()=>el.classList.remove('show'),dur);
+}
+
+// ── INIT ──────────────────────────────────────────────
+renderHome();
+renderLeads();
+
+// Splash
+setTimeout(()=>{
+  document.getElementById('splash').classList.add('hide');
+  setTimeout(()=>{
+    document.getElementById('splash').style.display='none';
+    document.getElementById('app').classList.add('visible');
+  },600);
+},2000);
+</script>
+</body>
+</html>
